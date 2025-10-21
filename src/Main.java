@@ -1,32 +1,44 @@
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Main {
-    /*punto d'inizio dell applicazione
-    * thread padre*/
+    static String primo="";
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Cavallo fulmine = new Cavallo("Fulmine");
-        Cavallo lampo = new Cavallo("Lampo");
-        Cavallo rose = new Cavallo("Rose");
-        Cavallo margherita = new Cavallo("Margherita");
-        Cavallo rambo = new Cavallo("Rambo");
-        System.out.println("Di quanto lo vuoi fare andare lento 'fulmine'?");
-        fulmine.setLentezza(scanner.nextInt());
-        System.out.println("Di quanto lo vuoi fare andare lento 'lampo'?");
-        lampo.setLentezza(scanner.nextInt());
-        System.out.println("Di quanto lo vuoi fare andare lento 'rose'?");
-        rose.setLentezza(scanner.nextInt());
-        System.out.println("Di quanto lo vuoi fare andare lento 'margherita'?");
-        margherita.setLentezza(scanner.nextInt());
-        System.out.println("Di quanto lo vuoi fare andare lento 'rambo'?");
-        rambo.setLentezza(scanner.nextInt());
+        Scanner input = new Scanner(System.in);
+        String tmpS;
+        int tmp;
+        ArrayList<Cavallo> listaCavallo = new ArrayList<Cavallo>();
+        for (int i = 1; i <= 4; i++) {
+            System.out.println("Inserisci il nome del cavallo " + i);
+            tmpS =  input.nextLine();
+            System.out.println("Inserisci la lentezza del cavallo " + i);
+            tmp = input.nextInt();
+            String v = input.nextLine(); //prende il \n
+            Cavallo c=new Cavallo(tmpS, tmp);
+            listaCavallo.add(c);
+        }
+        int a = (int)(Math.random() / 0.2);
+        Cavallo x = listaCavallo.get(a);
+        x.interrupt();
 
-        rose.setPriority(Thread.MAX_PRIORITY);
-        fulmine.setPriority(Thread.MIN_PRIORITY);
+        for(Cavallo c: listaCavallo){
+            c.start();
+        }
+        for(Cavallo c: listaCavallo){
+            try {
+                c.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("Il primo cavallo: " + primo);    }
 
-        fulmine.start();
-        lampo.start();
-        rose.start();
-        margherita.start();
-        rambo.start();
+    public static String getPrimo() {
+        return primo;
+    }
+    public static void setPrimo(String primo) {
+        Main.primo = primo;
     }
 }
