@@ -22,7 +22,7 @@ public class Main {
         for(Cavallo c: listaCavallo){
             c.start();
         }
-        int n = (int) (Math.random() * (listaCavallo.size() +1)); // indice da 0 a 3
+        int n = (int) (Math.random() * (listaCavallo.size() +1)); 
         Cavallo x = listaCavallo.get(n);
         x.interrupt();
         System.out.println("Il cavallo interrotto è: " + x.getName());
