@@ -22,18 +22,16 @@ public class Main {
         for(Cavallo c: listaCavallo){
             c.start();
         }
-        int n = (int) (Math.random() * (listaCavallo.size() +1)); 
+        int n = (int) (Math.random() /0.2);
         Cavallo x = listaCavallo.get(n);
         x.interrupt();
-        System.out.println("Il cavallo interrotto è: " + x.getName());
+        System.out.println("Cavallo azzoppato: "+ x.getNomeCavallo());
         
         for(Cavallo c: listaCavallo){
             try {
                 c.join();
             } catch (InterruptedException e) {
-                interrotto = true;
-                System.out.println(name + " è stato interrotto!");
-                return;
+               throw new RuntimeException(e);
             }
         }
         System.out.println("Il primo cavallo: " + primo);    }
