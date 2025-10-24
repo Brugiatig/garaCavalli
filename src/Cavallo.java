@@ -6,6 +6,8 @@ public class Cavallo extends Thread{
 
     private final String name;
     private int lentezza;
+    private boolean interrotto = false;
+    
     public Cavallo(String name, int lentezza) {
         super();
         this.name = name;
@@ -24,7 +26,7 @@ public class Cavallo extends Thread{
             }
             System.out.println(name +" cavalca - passo: " + i);
         }
-        if(Main.getPrimo().equals("")){
+        if(Main.getPrimo().equals("") && !interrotto){
             Main.setPrimo(this.name);
         }
     }
