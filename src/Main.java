@@ -18,6 +18,10 @@ public class Main {
             Cavallo c=new Cavallo(tmpS, tmp);
             listaCavallo.add(c);
         }
+        int n = (int) (Math.random() * 4) + 1;
+        Cavallo x = listaCavallo.get(n);
+        x.interrupt();
+        
         for(Cavallo c: listaCavallo){
             c.start();
         }
