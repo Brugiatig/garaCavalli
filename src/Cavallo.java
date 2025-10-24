@@ -22,7 +22,9 @@ public class Cavallo extends Thread{
             try {
                 sleep(lentezza);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                interrotto = true;
+                System.out.println(name + " è stato interrotto!");
+                return;
             }
             System.out.println(name +" cavalca - passo: " + i);
         }
