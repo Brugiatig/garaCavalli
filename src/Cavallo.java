@@ -6,7 +6,6 @@ public class Cavallo extends Thread{
 
     private final String name;
     private int lentezza;
-    private boolean interrotto = false;
     
     public Cavallo(String name, int lentezza) {
         super();
@@ -22,13 +21,11 @@ public class Cavallo extends Thread{
             try {
                 sleep(lentezza);
             } catch (InterruptedException e) {
-                interrotto = true;
-                System.out.println(name + " è stato interrotto!");
-                return;
+                throw new RuntimeException(e);
             }
             System.out.println(name +" cavalca - passo: " + i);
         }
-        if(Main.getPrimo().equals("") && !interrotto){
+        if(Main.getPrimo().equals("") && !Thread.currentThread().isInterrupted()){
             Main.setPrimo(this.name);
         }
     }
@@ -39,5 +36,9 @@ public class Cavallo extends Thread{
     /**setter per il parametro di lentezza */
     protected void setLentezza(int lentezza){
         this.lentezza=lentezza;
+    }
+
+    public String getNomeCavallo(){
+        return name;
     }
 }
