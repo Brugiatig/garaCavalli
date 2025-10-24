@@ -18,15 +18,17 @@ public class Main {
             Cavallo c=new Cavallo(tmpS, tmp);
             listaCavallo.add(c);
         }
+        int n = (int) (Math.random() /0.2);
+        Cavallo x = listaCavallo.get(n);
+        x.interrupt();
+        listaCavallo.remove(n);
         
         for(Cavallo c: listaCavallo){
             c.start();
         }
-        int n = (int) (Math.random() /0.2);
-        Cavallo x = listaCavallo.get(n);
-        x.interrupt();
-        System.out.println("Cavallo azzoppato: "+ x.getNomeCavallo());
         
+        System.out.println("Cavallo azzoppato: "+ x.getNomeCavallo());
+
         for(Cavallo c: listaCavallo){
             try {
                 c.join();
