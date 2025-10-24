@@ -16,7 +16,7 @@ public class Cavallo extends Thread{
     public void run(){
         System.out.println("Cavallo " +
                 name + " comincia il suo galoppo");
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 10 && !Thread.currentThread().isInterrupted(); i++) {
             try {
                 sleep(lentezza);
             } catch (InterruptedException e) {
