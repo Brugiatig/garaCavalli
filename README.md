@@ -1,4 +1,4 @@
-# Bucigno Gara Cavalli
+# BRUGIATI Gara Cavalli
 
 Simulatore di corsa di cavalli multi-thread in Java che permette di gestire una gara virtuale con possibilità di salvare i risultati su file.
 
