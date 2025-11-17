@@ -36,8 +36,23 @@ public class GestoreCavallo {
                throw new RuntimeException(e);
             }
         }
-        System.out.println("Il primo cavallo: " + primo);    }
+        System.out.println("Il primo cavallo: " + primo); 
+        //filechooser
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Salva il vincitore");
 
+        int result = chooser.showSaveDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
+                pw.println("Il primo cavallo è: " + primo);
+                System.out.println("Risultato salvato correttamente in: " + file.getName());
+            } catch (IOException e) {
+                System.out.println("Errore durante il salvataggio!");
+            }
+        }
+    }
     public static String getPrimo() {
         return primo;
     }
