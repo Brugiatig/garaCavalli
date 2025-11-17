@@ -6,9 +6,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * La classe {@code GestoreCavallo} gestisce la simulazione di una corsa tra cavalli.
+ * <p>
+ * L'utente inserisce i cavalli da tastiera, imposta la lentezza di ciascun cavallo,
+ * avvia la corsa con thread paralleli, azzoppa un cavallo casualmente
+ * e può salvare il risultato su file tramite {@link JFileChooser}.
+ * </p>
+ * 
+ * <p>Funzionalità principali:</p>
+ * <ul>
+ *   <li>Inserimento di cavalli e loro lentezza</li>
+ *   <li>Simulazione della corsa con thread</li>
+ *   <li>Azzoppamento di un cavallo casuale</li>
+ *   <li>Salvataggio del vincitore su file</li>
+ * </ul>
+ * 
+ * @author
+ * @version 1.0
+ */
 public class GestoreCavallo {
+
+    /** Nome del cavallo vincitore della corsa. */
     static String primo="";
 
+    /**
+     * Metodo principale che gestisce l'inserimento dei cavalli, la corsa
+     * e il salvataggio del vincitore.
+     *
+     * @param args argomenti della riga di comando (non utilizzati)
+     */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String tmpS;
@@ -20,7 +47,7 @@ public class GestoreCavallo {
             tmpS =  input.nextLine();
             System.out.println("Inserisci la lentezza del cavallo " + i);
             tmp = input.nextInt();
-            String v = input.nextLine();
+            String v = input.nextLine(); // prende il \n
             Cavallo c=new Cavallo(tmpS, tmp);
             listaCavallo.add(c);
         }
@@ -62,10 +89,20 @@ public class GestoreCavallo {
         }
     }
 
+    /**
+     * Restituisce il nome del cavallo vincitore.
+     *
+     * @return nome del cavallo vincitore
+     */
     public static String getPrimo() {
         return primo;
     }
 
+    /**
+     * Imposta il nome del cavallo vincitore.
+     *
+     * @param primo nome del cavallo vincitore
+     */
     public static void setPrimo(String primo) {
         GestoreCavallo.primo = primo;
     }
