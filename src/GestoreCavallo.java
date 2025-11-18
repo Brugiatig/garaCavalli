@@ -22,7 +22,7 @@ import java.io.PrintWriter;
  *   <li>Salvataggio del vincitore su file</li>
  * </ul>
  * 
- * @author
+ * @author brugiati
  * @version 1.0
  */
 public class GestoreCavallo {
